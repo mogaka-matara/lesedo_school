@@ -82,11 +82,11 @@
                                                 <label class="form-label">Email Address</label>
                                                 <div class="input-icon mb-3 position-relative">
 														<span class="input-icon-addon"><i class="ti ti-mail"></i></span>
-                                                    <input type="email" name="email" id="email"  value="{{old('email')}}" class="form-control">
+                                                    <input type="email" name="email" id="email"  value="{{old('email')}}" class="form-control" required autofocus autocomplete="email">
                                                 </div>
                                                 <label class="form-label">Password</label>
                                                 <div class="pass-group">
-                                                    <input type="password" name="password" id="password" class="pass-input form-control">
+                                                    <input type="password" name="password" id="password" class="pass-input form-control" required autocomplete="current-password">
                                                     <span class="ti toggle-password ti-eye-off"></span>
                                                 </div>
                                             </div>

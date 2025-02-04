@@ -2,14 +2,14 @@
 
     <!-- Logo -->
     <div class="header-left active">
-        <a href="index.html" class="logo logo-normal">
-            <img src="assets/img/logo.svg" alt="Logo">
+        <a href="{{route('dashboard')}}" class="logo logo-normal">
+            <img src="{{asset('backend/assets/img/logo.svg')}}" alt="Logo">
         </a>
-        <a href="index.html" class="logo-small">
-            <img src="assets/img/logo-small.svg" alt="Logo">
+        <a href="{{route('dashboard')}}" class="logo-small">
+            <img src="a{{asset('backend/ssets/img/logo-small.svg')}}" alt="Logo">
         </a>
-        <a href="index.html" class="dark-logo">
-            <img src="assets/img/logo-dark.svg" alt="Logo">
+        <a href="{{route('dashboard')}}" class="dark-logo">
+            <img src="{{asset('backend/assets/img/logo-dark.svg')}}" alt="Logo">
         </a>
         <a id="toggle_btn" href="javascript:void(0);">
             <i class="ti ti-menu-deep"></i>
@@ -17,7 +17,7 @@
     </div>
     <!-- /Logo -->
 
-    <a id="mobile_btn" class="mobile_btn" href="index.html#sidebar">
+    <a id="mobile_btn" class="mobile_btn" href="{{route('dashboard')}}">
 				<span class="bar-icon">
 					<span></span>
 					<span></span>
@@ -64,34 +64,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="pe-1 ms-1">
-                    <div class="dropdown">
-                        <a href="index.html#"
-                           class="btn btn-outline-light bg-white btn-icon d-flex align-items-center me-1 p-2"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="assets/img/flags/us.png" alt="Language" class="img-fluid rounded-pill">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="javascript:void(0);"
-                               class="dropdown-item active d-flex align-items-center">
-                                <img class="me-2 rounded-pill" src="assets/img/flags/us.png" alt="Img"
-                                     height="22" width="22"> English
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                <img class="me-2 rounded-pill" src="assets/img/flags/fr.png" alt="Img"
-                                     height="22" width="22"> French
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                <img class="me-2 rounded-pill" src="assets/img/flags/es.png" alt="Img"
-                                     height="22" width="22"> Spanish
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                <img class="me-2 rounded-pill" src="assets/img/flags/de.png" alt="Img"
-                                     height="22" width="22"> German
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="pe-1">
                     <div class="dropdown">
                         <a href="index.html#" class="btn btn-outline-light bg-white btn-icon me-1"
@@ -104,8 +76,8 @@
                             </div>
                             <div class="p-3 pb-0">
                                 <div class="row gx-2">
-                                    <div class="col-6">
-                                        <a href="add-student.html"
+                                    <div class="col-12">
+                                        <a href="#"
                                            class="d-block bg-primary-transparent ronded p-2 text-center mb-3 class-hover">
                                             <div class="avatar avatar-lg mb-2">
 														<span
@@ -115,184 +87,22 @@
                                             <p class="text-dark">Students</p>
                                         </a>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="add-teacher.html"
-                                           class="d-block bg-success-transparent ronded p-2 text-center mb-3 class-hover">
-                                            <div class="avatar avatar-lg mb-2">
-														<span
-                                                            class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-success rounded-circle"><i
-                                                                class="ti ti-users"></i></span>
-                                            </div>
-                                            <p class="text-dark">Teachers</p>
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="add-staff.html"
-                                           class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
-                                            <div class="avatar avatar-lg rounded-circle mb-2">
-														<span
-                                                            class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-warning rounded-circle"><i
-                                                                class="ti ti-users-group"></i></span>
-                                            </div>
-                                            <p class="text-dark">Staffs</p>
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="add-invoice.html"
-                                           class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
-                                            <div class="avatar avatar-lg mb-2">
-														<span
-                                                            class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-info rounded-circle"><i
-                                                                class="ti ti-license"></i></span>
-                                            </div>
-                                            <p class="text-dark">Invoice</p>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="pe-1">
-                    <a href="index.html#" id="dark-mode-toggle"
-                       class="dark-mode-toggle activate btn btn-outline-light bg-white btn-icon me-1">
-                        <i class="ti ti-moon"></i>
-                    </a>
-                    <a href="index.html#" id="light-mode-toggle"
-                       class="dark-mode-toggle btn btn-outline-light bg-white btn-icon me-1">
-                        <i class="ti ti-brightness-up"></i>
-                    </a>
-                </div>
-                <div class="pe-1" id="notification_item">
-                    <a href="index.html#" class="btn btn-outline-light bg-white btn-icon position-relative me-1"
-                       id="notification_popup">
-                        <i class="ti ti-bell"></i>
-                        <span class="notification-status-dot"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end notification-dropdown p-4">
-                        <div
-                            class="d-flex align-items-center justify-content-between border-bottom p-0 pb-3 mb-3">
-                            <h4 class="notification-title">Notifications (2)</h4>
-                            <div class="d-flex align-items-center">
-                                <a href="index.html#" class="text-primary fs-15 me-3 lh-1">Mark all as read</a>
-                                <div class="dropdown">
-                                    <a href="javascript:void(0);" class="bg-white dropdown-toggle"
-                                       data-bs-toggle="dropdown"><i class="ti ti-calendar-due me-1"></i>Today
-                                    </a>
-                                    <ul class="dropdown-menu mt-2 p-3">
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item rounded-1">
-                                                This Week
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item rounded-1">
-                                                Last Week
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item rounded-1">
-                                                Last Week
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+{{--                <div class="pe-1">--}}
+{{--                    <a href="index.html#" id="dark-mode-toggle"--}}
+{{--                       class="dark-mode-toggle activate btn btn-outline-light bg-white btn-icon me-1">--}}
+{{--                        <i class="ti ti-moon"></i>--}}
+{{--                    </a>--}}
+{{--                    <a href="index.html#" id="light-mode-toggle"--}}
+{{--                       class="dark-mode-toggle btn btn-outline-light bg-white btn-icon me-1">--}}
+{{--                        <i class="ti ti-brightness-up"></i>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
-                        <div class="noti-content">
-                            <div class="d-flex flex-column">
-                                <div class="border-bottom mb-3 pb-3">
-                                    <a href="activities.html">
-                                        <div class="d-flex">
-													<span class="avatar avatar-lg me-2 flex-shrink-0">
-														<img src="assets/img/profiles/avatar-27.jpg" alt="Profile">
-													</span>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-1"><span class="text-dark fw-semibold">Shawn</span>
-                                                    performance in Math is
-                                                    below the threshold.</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="border-bottom mb-3 pb-3">
-                                    <a href="activities.html" class="pb-0">
-                                        <div class="d-flex">
-													<span class="avatar avatar-lg me-2 flex-shrink-0">
-														<img src="assets/img/profiles/avatar-23.jpg" alt="Profile">
-													</span>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-1"><span
-                                                        class="text-dark fw-semibold">Sylvia</span> added
-                                                    appointment on
-                                                    02:00 PM</p>
-                                                <span>10 mins ago</span>
-                                                <div
-                                                    class="d-flex justify-content-start align-items-center mt-1">
-                                                    <span class="btn btn-light btn-sm me-2">Deny</span>
-                                                    <span class="btn btn-primary btn-sm">Approve</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="border-bottom mb-3 pb-3">
-                                    <a href="activities.html">
-                                        <div class="d-flex">
-													<span class="avatar avatar-lg me-2 flex-shrink-0">
-														<img src="assets/img/profiles/avatar-25.jpg" alt="Profile">
-													</span>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-1">New student record <span
-                                                        class="text-dark fw-semibold"> George</span> is
-                                                    created by <span class="text-dark fw-semibold">
-																Teressa</span></p>
-                                                <span>2 hrs ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="border-0 mb-3 pb-0">
-                                    <a href="activities.html">
-                                        <div class="d-flex">
-													<span class="avatar avatar-lg me-2 flex-shrink-0">
-														<img src="assets/img/profiles/avatar-01.jpg" alt="Profile">
-													</span>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-1">A new teacher record for <span
-                                                        class="text-dark fw-semibold">Elisa</span>
-                                                </p>
-                                                <span>09:45 AM</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex p-0">
-                            <a href="index.html#" class="btn btn-light w-100 me-2">Cancel</a>
-                            <a href="activities.html" class="btn btn-primary w-100">View All</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pe-1">
-                    <a href="chat.html" class="btn btn-outline-light bg-white btn-icon position-relative me-1">
-                        <i class="ti ti-brand-hipchat"></i>
-                        <span class="chat-status-dot"></span>
-                    </a>
-                </div>
-                <div class="pe-1">
-                    <a href="index.html#" class="btn btn-outline-light bg-white btn-icon me-1">
-                        <i class="ti ti-chart-bar"></i>
-                    </a>
-                </div>
-                <div class="pe-1">
-                    <a href="index.html#" class="btn btn-outline-light bg-white btn-icon me-1" id="btnFullscreen">
-                        <i class="ti ti-maximize"></i>
-                    </a>
-                </div>
                 <div class="dropdown ms-1">
                     <a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center"
                        data-bs-toggle="dropdown">

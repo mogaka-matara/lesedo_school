@@ -5,9 +5,9 @@
                 <li>
                     <a href="javascript:void(0);"
                        class="d-flex align-items-center border bg-white rounded p-2 mb-4">
-                        <img src="assets/img/icons/global-img.svg" class="avatar avatar-md img-fluid rounded"
+                        <img src="{{asset('backend/assets/img/icons/global-img.svg')}}" class="avatar avatar-md img-fluid rounded"
                              alt="Profile">
-                        <span class="text-dark ms-2 fw-normal">Global International</span>
+                        <span class="text-dark ms-2 fw-normal">Lesedi Academy</span>
                     </a>
                 </li>
             </ul>
@@ -15,16 +15,7 @@
                 <li>
                     <h6 class="submenu-hdr"><span>Main</span></h6>
                     <ul>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="subdrop active"><i
-                                    class="ti ti-layout-dashboard"></i><span>Dashboard</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="index.html" class="active">Admin Dashboard</a></li>
-                                <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
-                                <li><a href="student-dashboard.html">Student Dashboard</a></li>
-                                <li><a href="parent-dashboard.html">Parent Dashboard</a></li>
-                            </ul>
+                        <li class="submenu"><a href="{{route('dashboard')}}" class=" active"><i class="ti ti-layout-dashboard"></i><span>Dashboard</span></a>
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"><i

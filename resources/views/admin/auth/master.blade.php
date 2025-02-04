@@ -33,7 +33,7 @@
 <script src="{{ asset('backend/assets/plugins/select2/js/select2.min.js') }}"></script>
 <script src="{{ asset('backend/assets/js/script.js') }}"></script>
 
-<script src="{{ asset('backend/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="b7851a59aa7a714fcec34d62-|49" defer></script>
+<script src="{{ asset('backend/static/rocket-loader.min.js') }}" data-cf-settings="b7851a59aa7a714fcec34d62-|49" defer></script>
 
 @stack('scripts')
 
