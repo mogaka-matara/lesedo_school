@@ -24,7 +24,15 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/owlcarousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/owlcarousel/owl.theme.default.min.css') }}">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+
+
+
 </head>
 
 <body>
@@ -55,8 +63,22 @@
 <script src="{{ asset('backend/assets/plugins/countup/jquery.waypoints.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/assets/js/script.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/assets/static/rocket-loader.min.js') }}" defer></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+
 
 @stack('scripts')
+
+
+<script>
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    toastr.error("{{$error}}")
+    @endforeach
+    @endif
+</script>
 
 </body>
 
