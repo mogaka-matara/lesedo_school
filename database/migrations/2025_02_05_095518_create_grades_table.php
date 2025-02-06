@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('tuition_fee');
-            $table->double('exam_fee');
-            $table->double('transport_fee');
-            $table->string('student_total');
-            $table->string('total_subjects');
+            $table->string('student_total')->nullable();
+            $table->string('total_subject')->nullable();
             $table->timestamps();
         });
     }
