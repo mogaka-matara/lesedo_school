@@ -56,8 +56,7 @@
                     </div>
                     <div class="mb-2">
                         <a href="classes.html#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_class"><i
-                                class="ti ti-square-rounded-plus-filled me-2"></i>Add
-                            Class</a>
+                                class="ti ti-square-rounded-plus-filled me-2"></i>Add Term</a>
                     </div>
                 </div>
             </div>
@@ -82,34 +81,47 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Class</h4>
+                    <h4 class="modal-title">Add Term</h4>
                     <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal"
                             aria-label="Close">
                         <i class="ti ti-x"></i>
                     </button>
                 </div>
-                <form action="{{route('grade.store')}}" method="POST">
+                <form action="{{route('term.store')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Grade Name</label>
+                                    <label class="form-label">Select Grade</label>
+                                    <select name="grade_id" id="grade_id" class="form-control">
+                                        <option value="">Select</option>
+                                    @foreach($grades as $grade)
+                                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Term Name</label>
                                     <input type="text" name="name" id="name" class="form-control" >
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">No of Students</label>
-                                    <input type="number" name="student_total" id="student_total" class="form-control" >
+                                    <label class="form-label">Tuition Fee</label>
+                                    <input type="text" name="tuition_fee" id="tuition_fee" class="form-control" >
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">No of Subjects</label>
-                                    <input type="number" name="total_subject" id="total_subject" class="form-control">
+                                    <label class="form-label">Lunch Fee</label>
+                                    <input type="number" name="lunch_fee" id="lunch_fee" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tea Fee</label>
+                                    <input type="number" name="tea_fee" id="tea_fee" class="form-control">
                                 </div>
 
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Add Grade</button>
+                        <button type="submit" class="btn btn-primary">Add Term</button>
                     </div>
                 </form>
             </div>
