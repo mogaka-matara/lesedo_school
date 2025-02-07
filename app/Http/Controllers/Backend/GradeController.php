@@ -34,9 +34,6 @@ class GradeController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:grades'],
-            'tuition_fee' => ['required', 'integer'],
-            'exam_fee' => ['required', 'integer'],
-            'transport_fee' => ['required', 'integer'],
             'student_total' => ['required', 'integer'],
             'total_subject' => ['required', 'integer'],
         ]);
@@ -46,11 +43,8 @@ class GradeController extends Controller
 
         $grade = new Grade();
         $grade->name = $request->input('name');
-        $grade->tuition_fee = $request->input('tuition_fee');
-        $grade->exam_fee = $request->input('exam_fee');
-        $grade->transport_fee = $request->input('transport_fee');
         $grade->student_total = $request->input('student_total');
-        $grade->total_subjects = $request->input('total_subject');
+        $grade->total_subject = $request->input('total_subject');
         $grade->save();
 
         toastr()->success('Class added successfully!');
@@ -82,9 +76,6 @@ class GradeController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:grades,name,'.$id],
-            'tuition_fee' => ['required', 'integer'],
-            'exam_fee' => ['required', 'integer'],
-            'transport_fee' => ['required', 'integer'],
             'student_total' => ['required', 'integer'],
             'total_subject' => ['required', 'integer'],
         ]);
@@ -92,11 +83,8 @@ class GradeController extends Controller
 
         $grade = Grade::query()->findOrFail($id);
         $grade->name = $request->input('name');
-        $grade->tuition_fee = $request->input('tuition_fee');
-        $grade->exam_fee = $request->input('exam_fee');
-        $grade->transport_fee = $request->input('transport_fee');
         $grade->student_total = $request->input('student_total');
-        $grade->total_subjects = $request->input('total_subject');
+        $grade->total_subject = $request->input('total_subject');
         $grade->save();
 
         toastr()->success('Class updated successfully!');
