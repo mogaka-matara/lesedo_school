@@ -30,8 +30,29 @@
                                 <li><a href="{{route('grade.index')}}">All Classes</a></li>
                             </ul>
                         </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><i class="ti ti-school-bell"></i><span>School Terms</span><span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{{route('term.index')}}">All Terms</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
+
+                <li>
+                    <h6 class="submenu-hdr"><span>Peoples</span></h6>
+                    <ul>
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="subdrop active"><i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{{route('student.index')}}" class="active">All Students</a></li>
+                                <li><a href="student-details.html">Student Details</a></li>
+                                <li><a href="student-promotion.html">Student Promotion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
 
             </ul>
         </div>
