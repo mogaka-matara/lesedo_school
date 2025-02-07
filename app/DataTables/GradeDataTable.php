@@ -41,6 +41,9 @@ class GradeDataTable extends DataTable
             ->addColumn('transport_fee', function ($query) {
                 return number_format($query->transport_fee, 2);
             })
+            ->addColumn('total_fee', function ($query) {
+                return number_format($query->total_fee, 2);
+            })
             ->rawColumns(['action', 'date', 'tuition_fee'])
             ->setRowId('id');
     }
@@ -83,11 +86,8 @@ class GradeDataTable extends DataTable
         return [
             Column::make('id')->addClass('text-center'),
             Column::make('name')->addClass('text-center'),
-            Column::make('tuition_fee')->addClass('text-center'),
-            Column::make('exam_fee')->addClass('text-center'),
-            Column::make('transport_fee')->addClass('text-center'),
             Column::make('student_total')->addClass('text-center'),
-            Column::make('total_subjects')->addClass('text-center'),
+            Column::make('total_subject')->addClass('text-center'),
             Column::make('date')->addClass('text-center'),
             Column::computed('action')
                   ->exportable(false)
