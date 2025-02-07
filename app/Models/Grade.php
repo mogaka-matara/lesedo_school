@@ -3,18 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Grade extends Model
 {
     protected $fillable = ['name', 'student_total', 'total_subject'];
 
-    public function feeComponents()
+
+
+    public function terms()
     {
-        return $this->hasMany(FeeComponent::class);
+        return $this->hasMany(Term::class);
     }
-
-    public function getTotalFeesAttribute()
+    public function students(): HasMany
     {
-
+        return $this->hasMany(Student::class);
     }
 }
