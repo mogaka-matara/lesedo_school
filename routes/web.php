@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\FeeController;
 use App\Http\Controllers\Backend\GradeController;
+use App\Http\Controllers\Backend\StudentController;
+use App\Http\Controllers\Backend\TermController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +24,15 @@ Route::middleware('auth')->group(function () {
 
     //grade routes
     Route::resource('grade', GradeController::class);
+
+    //student routes
+    Route::resource('student', StudentController::class);
+
+    //fee route
+    Route::resource('fees', FeeController::class);
+
+    //terms routes
+    Route::resource('term', TermController::class);
 });
 
 require __DIR__.'/auth.php';
