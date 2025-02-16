@@ -6,6 +6,7 @@ use App\DataTables\TermDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Term;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TermController extends Controller
@@ -16,8 +17,7 @@ class TermController extends Controller
     public function index(TermDataTable $dataTable)
     {
 
-        $grades = Grade::all();
-        return $dataTable->render('admin.term.index', compact('grades'));
+        return $dataTable->render('admin.term.index');
     }
 
     /**
@@ -34,20 +34,17 @@ class TermController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'grade_id' => ['required', 'exists:grades,id'],
             'name' => ['required', 'string', 'max:255'],
-            'tuition_fee' => ['required', 'numeric'],
-            'lunch_fee' => ['nullable', 'numeric'],
-            'tea_fee' => ['nullable', 'numeric'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+
+
         ]);
 
         $term = new Term();
-        $term->grade_id = $request->input('grade_id');
         $term->name = $request->input('name');
-        $term->tuition_fee = $request->input('tuition_fee');
-        $term->lunch_fee = $request->input('lunch_fee');
-        $term->tea_fee = $request->input('tea_fee');
-        $term->total_fee = 0;
+        $term->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        $term->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
 
         $term->save();
 
