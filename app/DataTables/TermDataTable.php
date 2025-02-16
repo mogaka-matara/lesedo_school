@@ -24,16 +24,15 @@ class TermDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $editBtn = "<a href='".route('term.edit', $query->id)."' class='edit btn btn-primary'><i class='fa fa-edit'></i></a>";
-                $deleteBtn = "<a href='".route('term.edit', $query->id)."' class='edit btn btn-danger '><i class='fa fa-trash-alt'></i></a>";
+                $deleteBtn = "<a href='".route('term.edit', $query->id)."' class='edit btn btn-danger '><i class='fa-solid fa-trash'></i></a>";
 
                 return $editBtn . $deleteBtn;
 
             })
-            ->addColumn('grade_name', function ($query) {
-                return $query->grade->name;
-            })
 
-            ->rawColumns(['action', 'grade_name'])
+
+
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -42,7 +41,7 @@ class TermDataTable extends DataTable
      */
     public function query(Term $model): QueryBuilder
     {
-        return $model->newQuery()->with('grade');
+        return $model->newQuery();
     }
 
     /**
@@ -75,10 +74,8 @@ class TermDataTable extends DataTable
         return [
             Column::make('id')->addClass('text-center'),
             Column::make('name')->addClass('text-center'),
-            Column::make('grade_name')->addClass('text-center'),
-            Column::make('tuition_fee')->addClass('text-center'),
-            Column::make('tea_fee')->addClass('text-center'),
-            Column::make('lunch_fee')->addClass('text-center'),
+            Column::make('start_date')->addClass('text-center'),
+            Column::make('end_date')->addClass('text-center'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
