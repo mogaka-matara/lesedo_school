@@ -66,37 +66,33 @@
                         <div class=" d-flex">
                             <div class="card flex-fill">
                                 <div class="card-header">
-                                    <h5 class="card-title">Update Term</h5>
+                                    <h5 class="card-title">Basic Form</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{route('grade.update', $term->id)}}" method="POST">
+                                    <form action="{{route('grade.update', $grade->id)}}" method="POST">
 
                                         @csrf
                                         @method('PUT')
                                         <div class="row mb-3">
-                                            <label class=" form-label">Term Name</label>
+                                            <label class=" form-label">Subject Name</label>
                                             <div class="">
-                                                <input type="text" name="name" id="name" value="{{$term->name}}" class="form-control">
+                                                <input type="text" name="name" id="name" value="" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Start Date</label>
-                                            <div class="input-icon position-relative">
-                                                <span class="input-icon-addon"><i class="ti ti-calendar"></i></span>
-                                                <input type="date" name="start_date" class="form-control" required value="{{$term->start_date}}">
+                                        <div class="row mb-3">
+                                            <label class=" form-label">Student Total</label>
+                                            <div class="">
+                                                <input type="number" name="student_total" id="student_total" value="{{$grade->student_total}}" class="form-control">
                                             </div>
-                                            <small class="text-muted">Only the month and day (MM-DD) will be stored.</small>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Start Date</label>
-                                            <div class="input-icon position-relative">
-                                                <span class="input-icon-addon"><i class="ti ti-calendar"></i></span>
-                                                <input type="date" name="end_date" class="form-control" required value="{{$term->end_date}}">
+                                        <div class="row mb-3">
+                                            <label class=" form-label">Subjects Total</label>
+                                            <div class="">
+                                                <input type="number"  name="total_subject" id="total_subject" value="{{$grade->total_subjects}}" class="form-control">
                                             </div>
-                                            <small class="text-muted">Only the month and day (MM-DD) will be stored.</small>
                                         </div>
                                         <div class="text-start">
-                                            <button type="submit" class="btn btn-primary">Update Term</button>
+                                            <button type="submit" class="btn btn-primary">Update Grades</button>
                                         </div>
                                     </form>
                                 </div>
