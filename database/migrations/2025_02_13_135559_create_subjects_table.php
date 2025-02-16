@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->date('start_date')->after('total_fee')->nullable();
-            $table->date('end_date')->after('start_date')->nullable();
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->dropColumn(['start_date', 'end_date']);
-        });
+        Schema::dropIfExists('subjects');
     }
 };
