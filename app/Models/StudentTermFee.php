@@ -14,6 +14,7 @@ class StudentTermFee extends Model
         'student_id',
         'term_id',
         'amount',
+        'receipt_number',
         'payment_date',
         'payment_mode'
     ];
@@ -35,7 +36,7 @@ class StudentTermFee extends Model
 
         static::created(function ($fee) {
             if ($fee->student) {
-                $fee->student->updateTermPayments();
+                $fee->student->updateActiveTermPayments($fee->amount);
             }
         });
     }
