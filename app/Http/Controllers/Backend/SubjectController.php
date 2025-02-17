@@ -26,7 +26,7 @@ class SubjectController extends Controller
         $subjects->save();
 
         toastr()->success('Subject added successfully!');
-        return redirect()->route('all.subjects');
+        return redirect()->route('subject.index');
 
     }
 }
