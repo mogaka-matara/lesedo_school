@@ -13,10 +13,15 @@
                 <li>
                     <h6 class="submenu-hdr"><span>Main</span></h6>
                     <ul>
-                        <li class=""><a href="{{route('dashboard')}}" {{ setActive(['dashboard']) }}"><i class="ti ti-layout-dashboard"></i><span>Dashboard</span></a></li>
-
+                        <li>
+                            <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                <i class="ti ti-layout-dashboard"></i><span>Dashboard</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
+
+
 
                 <li>
                     <h6 class="submenu-hdr"><span>Academic</span></h6>
@@ -93,8 +98,19 @@
                                 <li><a href="{{route('borrowed.books')}}" class="menu-item {{ setActive(['borrowed']) }}">All Borrowed Books</a></li>
                             </ul>
                         </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="submenu-title {{ setActive(['inventory']) }}">
+                                <i class="ti ti-school"></i><span>Inventory</span><span class="menu-arrow"></span>
+                            </a>
+                            <ul class="submenu-list" style="{{ isSubmenuOpen(['inventory']) ? 'display: block;' : 'display: none;' }}">
+                                <li><a href="{{route('inventory.index')}}" class="menu-item {{ setActive(['inventory']) }}">All Books</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </li>
+
+
             </ul>
         </div>
     </div>
