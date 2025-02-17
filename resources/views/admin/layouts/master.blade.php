@@ -8,6 +8,7 @@
     <meta name="keywords" content="admin, estimates, bootstrap, business, html5, responsive, Projects">
     <meta name="author" content="Dreams technologies - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="csrf-token"  content="{{ csrf_token() }}">
     <title>@yield('title') | Lesedi Academy</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/img/favicon.png') }}">
@@ -15,6 +16,10 @@
     <script src="{{ asset('backend/assets/js/theme-script.js') }}" type="text/javascript"></script>
 
     <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/icons/ionic/ionicons.css') }}">
+    <link rel="stylesheet" href="{{asset('backend/assets/plugins/select2/css/select2.min.css')}}">
+
+
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/icons/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/tabler-icons/tabler-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/daterangepicker/daterangepicker.css') }}">
@@ -27,7 +32,8 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
 
@@ -61,12 +67,21 @@
 <script src="{{ asset('backend/assets/plugins/select2/js/select2.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/assets/plugins/countup/jquery.counterup.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/assets/plugins/countup/jquery.waypoints.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backend/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
 <script src="{{ asset('backend/assets/js/script.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/assets/static/rocket-loader.min.js') }}" defer></script>
+<script src="{{ asset('backend/assets/js/sidebar.js') }}" type="text/javascript"></script>
+
+<script src="{{asset('backend/assets/js/custom-select2.js')}}" type="text/javascript"></script>
+
+<script src="{{ asset('backend/assets/plugins/summernote/summernote-lite.min.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+
+<script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 
 @stack('scripts')
@@ -79,6 +94,7 @@
     @endforeach
     @endif
 </script>
+
 
 </body>
 
