@@ -44,7 +44,7 @@ class LibraryController extends Controller
 
         toastr()->success('Borrowed book successfully.');
 
-        return redirect()->route('borrowedBooks');
+        return redirect()->route('borrowed.books');
 
     }
 
@@ -83,6 +83,6 @@ class LibraryController extends Controller
 
         toastr()->success('Return book successfully.');
 
-        return redirect()->route('borrowedBooks');
+        return redirect()->route('borrowed.books');
     }
 }
