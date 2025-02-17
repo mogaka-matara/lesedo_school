@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->id();
-            $table->integer('grade_id');
-            $table->string('name');
-            $table->double('tuition_fee');
-            $table->double('lunch_fee')->nullable();
-            $table->double('tea_fee')->nullable();
-            $table->double('total_fee')->nullable();
+            $table->string('name'); // e.g., "Term 1", "Term 2"
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }

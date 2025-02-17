@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('grade_id');
             $table->integer('term_id');
+            $table->integer('academic_year_id');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->boolean('opt_in_tea')->default(false);
             $table->double('term_amount_paid')->default(0);
             $table->double('term_arrears')->default(0);
+            $table->double('overpayment')->default(0);
             $table->string('term_status')->default('Pending');
             $table->timestamps();
         });
