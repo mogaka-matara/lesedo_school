@@ -75,7 +75,6 @@
                             <ul class="submenu-list" style="{{ isSubmenuOpen(['fee-component', 'fees']) ? 'display: block;' : 'display: none;' }}">
                                 <li><a href="{{route('fee-component.index')}}" class="menu-item {{ setActive(['fee-component']) }}">All Fee Components</a></li>
                                 <li><a href="{{route('fees.index')}}" class="menu-item {{ setActive(['fees']) }}">Fee Collection</a></li>
-                                <li><a href="student-promotion.html" class="menu-item">Student Promotion</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -88,11 +87,10 @@
                             <a href="javascript:void(0);" class="submenu-title {{ setActive(['library']) }}">
                                 <i class="ti ti-school"></i><span>Library</span><span class="menu-arrow"></span>
                             </a>
-                            <ul class="submenu-list" style="{{ isSubmenuOpen(['library']) ? 'display: block;' : 'display: none;' }}">
+                            <ul class="submenu-list" style="{{ isSubmenuOpen(['library', 'subject', 'borrowed']) ? 'display: block;' : 'display: none;' }}">
                                 <li><a href="{{route('library.index')}}" class="menu-item {{ setActive(['library']) }}">All Books</a></li>
-                                <li><a href="" class="menu-item {{ setActive(['']) }}">Add Book</a></li>
-                                <li><a href="{{route('all.subjects')}}" class="menu-item {{ setActive(['all.subjects']) }}">All Book Subjects</a></li>
-                                <li><a href="{{route('borrowedBooks')}}" class="menu-item {{ setActive(['borrowedBooks']) }}">All Borrowed Books</a></li>
+                                <li><a href="{{route('subject.index')}}" class="menu-item {{ setActive(['subject']) }}">All Book Subjects</a></li>
+                                <li><a href="{{route('borrowed.books')}}" class="menu-item {{ setActive(['borrowed']) }}">All Borrowed Books</a></li>
                             </ul>
                         </li>
                     </ul>
