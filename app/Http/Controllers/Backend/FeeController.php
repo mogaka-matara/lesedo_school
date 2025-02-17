@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\DataTables\FeeDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Fee;
 use App\Models\Student;
 use App\Models\StudentTermFee;
 use App\Models\Term;
@@ -14,8 +14,12 @@ class FeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(FeeDataTable $dataTable)
     {
+
+        $feeInvoice = StudentTermFee::query()
+            ->with(['student','term'])->get();
+        return $dataTable->render('admin.fee-payment.index', compact('feeInvoice') );
 
     }
 
@@ -32,6 +36,7 @@ class FeeController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $request->validate([
             'student_id' => ['required', 'exists:students,id'],
             'term_id' => ['required', 'exists:terms,id'],
@@ -43,26 +48,35 @@ class FeeController extends Controller
         ]);
 
         $student = Student::findOrFail($request->input('student_id'));
-        $term = Term::findOrFail($request->input('term_id'));
+        $requestedTerm = Term::findOrFail($request->input('term_id'));
 
-        if ($request->input('amount') > $student->term_arrears) {
-            return back()->withErrors(['amount' => 'The payment amount cannot exceed the student\'s arrears.']);
+        $activeTerm = Term::getActiveTerm();
+
+        if (!$activeTerm || $requestedTerm->id !== $activeTerm->id) {
+            return back()->withErrors(['term' => 'The selected term is not the currently active term.']);
         }
 
+        if ($student->term_id !== $activeTerm->id) {
+            return back()->withErrors(['term' => 'The student is not assigned to the currently active term.']);
+        }
+
+
         $fee = new StudentTermFee();
+        $fee->invoice_id = 'LE-INV-'. rand(1, 999999);
         $fee->student_id = $student->id;
-        $fee->term_id = $term->id;
+        $fee->term_id =  $activeTerm->id;
         $fee->payment_mode = $request->input('payment_mode');
         $fee->receipt_number = $request->input('receipt_number');
         $fee->amount = $request->input('amount');
         $fee->payment_date = now();
 
-
         $fee->save();
+
+        $student->updateActiveTermPayments($request->input('amount'));
 
         toastr()->success('Fee Payment Successful');
 
-        return redirect()->route('student.index');
+        return redirect()->route('fees.index');
     }
 
     /**
