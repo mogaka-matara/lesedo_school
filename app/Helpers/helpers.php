@@ -1,14 +1,14 @@
 <?php
 
-
-use App\Models\Grade;
-
-function getTotalFees($grade_id)
-{
-    $grade = Grade::find($grade_id);
-    if (!$grade) {
-        return 0;
+function setActive(array $resources, string $activeClass = 'active', $returnBool = false) {
+    foreach ($resources as $resource) {
+        if (request()->routeIs($resource . '.*')) {
+            return $returnBool ? true : $activeClass;
+        }
     }
-    return $grade->tuition_fee + $grade->exam_fee + $grade->transport_fee;
+    return $returnBool ? false : '';
+}
 
+function isSubmenuOpen(array $resources) {
+    return setActive($resources, '', true);
 }
