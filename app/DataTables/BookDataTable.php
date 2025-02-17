@@ -23,8 +23,8 @@ class BookDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $editBtn = "<a href='".route('library.edit', $query->id)."' class='edit btn btn-primary me-3'><i class='fa fa-edit'></i></a>";
-                $deleteBtn = "<a href='".route('term.edit', $query->id)."' class='edit btn btn-danger '><i class='fa-solid fa-trash'></i></a>";
+                $editBtn = "<a href='".route('library.edit', $query->id)."' class=' btn btn-primary me-3'><i class='fa fa-edit'></i></a>";
+                $deleteBtn = "<a href='".route('library.destroy', $query->id)."' class=' btn btn-danger delete-item '><i class='fa-solid fa-trash'></i></a>";
 
                 return $editBtn . $deleteBtn;
 

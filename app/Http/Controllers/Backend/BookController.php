@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\BookDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\BorrowBook;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Subject;
@@ -112,8 +113,17 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+   public function destroy(string $id)
+   {
+       $book = Book::query()->findOrFail($id);
+
+       if (BorrowBook::query()->where(['book_id' => $id, 'status' => 1])->exists()) {
+           return response()->json(['status' => 'error', 'message' => 'Book cannot be deleted because it is actively borrowed']);
+       }
+
+       $book->delete();
+
+       return response()->json(['status' => 'success', 'message' => 'Book deleted successfully!']);
+   }
+
 }
