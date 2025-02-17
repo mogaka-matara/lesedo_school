@@ -78,13 +78,17 @@
                                     </div>
                                     <div class=" col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Term</label>
-                                            <select class="select" name="term_id">
-                                                <option>Select</option>
-                                                @foreach($terms as $term)
-                                                    <option value="{{$term->id}}">{{ $term->name }}</option>
-                                                @endforeach
-
+                                            <label class="form-label">Academic Year</label>
+                                            <select name="academic_year_id" class="form-select" required>
+                                                @if (count($academicYears) === 0)
+                                                    <option value="" disabled selected>No active academic year available</option>
+                                                @else
+                                                    @foreach ($academicYears as $academicYear)
+                                                        <option value="{{ $academicYear->id }}" selected>
+                                                            {{ $academicYear->name }} (Active)
+                                                        </option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>

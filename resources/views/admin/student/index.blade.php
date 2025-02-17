@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'All Grades')
+@section('title', 'All Students')
 
 @section('content')
 
@@ -134,10 +134,10 @@
             var button = $(event.relatedTarget);
 
             var studentId = button.data('student-id');
-            var termId = button.data('term-id'); // Fetch term_id from button attribute
+            var termId = button.data('term-id');
 
             $('#studentId').val(studentId);
-            $('#termId').val(termId); // Set termId input field
+            $('#termId').val(termId);
         });
     </script>
 

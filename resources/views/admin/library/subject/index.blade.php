@@ -10,52 +10,22 @@
             <!-- Page Header -->
             <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                 <div class="my-auto mb-2">
-                    <h3 class="page-title mb-1">Classes List</h3>
+                    <h3 class="page-title mb-1">Subject List</h3>
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Dashboard</a>
+                                <a href="{{route('dashboard')}}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="javascript:void(0);">Classes </a>
+                                <a href="javascript:void(0);">Subjects </a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">All Classes</li>
+                            <li class="breadcrumb-item active" aria-current="page">All Subjects</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="d-flex my-xl-auto right-content align-items-center flex-wrap">
-                    <div class="pe-1 mb-2">
-                        <a href="classes.html#" class="btn btn-outline-light bg-white btn-icon me-1" data-bs-toggle="tooltip"
-                           data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh">
-                            <i class="ti ti-refresh"></i>
-                        </a>
-                    </div>
-                    <div class="pe-1 mb-2">
-                        <button type="button" class="btn btn-outline-light bg-white btn-icon me-1"
-                                data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print"
-                                data-bs-original-title="Print">
-                            <i class="ti ti-printer"></i>
-                        </button>
-                    </div>
-                    <div class="dropdown me-2 mb-2">
-                        <a href="javascript:void(0);"
-                           class="dropdown-toggle btn btn-light fw-medium d-inline-flex align-items-center"
-                           data-bs-toggle="dropdown">
-                            <i class="ti ti-file-export me-2"></i>Export
-                        </a>
-                        <ul class="dropdown-menu  dropdown-menu-end p-3">
-                            <li>
-                                <a href="javascript:void(0);" class="dropdown-item rounded-1"><i
-                                        class="ti ti-file-type-pdf me-1"></i>Export as PDF</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="dropdown-item rounded-1"><i
-                                        class="ti ti-file-type-xls me-1"></i>Export as Excel </a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="mb-2">
-                        <a href="classes.html#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_class"><i
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_class"><i
                                 class="ti ti-square-rounded-plus-filled me-2"></i>Add Subject</a>
                     </div>
                 </div>

@@ -22,11 +22,11 @@
             </div>
             <div class="d-flex my-xl-auto right-content align-items-center flex-wrap">
                 <div class="mb-2">
-                    <a href="#" class="btn btn-primary d-flex align-items-center me-3"><i
+                    <a href="{{route('student.create')}}" class="btn btn-primary d-flex align-items-center me-3"><i
                             class="ti ti-square-rounded-plus me-2"></i>Add New Student</a>
                 </div>
                 <div class="mb-2">
-                    <a href="#" class="btn btn-light d-flex align-items-center">Fees Details</a>
+                    <a href="{{route('fees.index')}}" class="btn btn-light d-flex align-items-center">Fees Details</a>
                 </div>
             </div>
         </div>
@@ -38,9 +38,8 @@
                     <div class="alert alert-success rounded-pill d-flex align-items-center justify-content-between border-success mb-4"
                          role="alert">
                         <div class="d-flex align-items-center">
-									<span class="me-1 avatar avatar-sm flex-shrink-0"><img
-                                            src="backend/assets/img/profiles/avatar-27.jpg" alt="Img"
-                                            class="img-fluid rounded-circle"></span>
+									<span class="me-1 avatar avatar-sm flex-shrink-0"><img src="backend/assets/img/profiles/avatar-27.jpg" alt="Img"
+                                                                                           class="img-fluid rounded-circle"></span>
                             <p>Fahed III,C has paid Fees for the <strong class="mx-1">“Term1”</strong></p>
                         </div>
                         <button type="button" class="btn-close p-0" data-bs-dismiss="alert"
@@ -48,7 +47,6 @@
                     </div>
                 </div>
 
-                <!-- Dashboard Content -->
                 <div class="card bg-dark">
                     <div class="overlay-img">
                         <img src="backend/assets/img/bg/shape-04.png" alt="img" class="img-fluid shape-01">
@@ -89,16 +87,22 @@
                             </div>
                             <div class="overflow-hidden flex-fill">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h2 class="counter">3654</h2>
-                                    <span class="badge bg-danger">1.2%</span>
+                                    <h2 class="counter">{{$totalStudents}}</h2>
+                                    @if ($percentageChange > 0)
+                                        <span class="badge bg-success">{{ $percentageChange }}%</span>
+                                    @elseif ($percentageChange < 0)
+                                        <span class="badge bg-danger">{{ $percentageChange }}%</span>
+                                    @else
+                                        <span class="badge bg-secondary">0%</span>
+                                    @endif
                                 </div>
                                 <p>Total Students</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-top mt-3 pt-3">
-                            <p class="mb-0">Active : <span class="text-dark fw-semibold">3643</span></p>
+                            <p class="mb-0">Cleared Fee : <span class="text-dark fw-semibold">{{$clearedFeeStudents }}</span></p>
                             <span class="text-light">|</span>
-                            <p>Inactive : <span class="text-dark fw-semibold">11</span></p>
+                            <p>Student with Arrears  : <span class="text-dark fw-semibold">{{  $arrearsStudents}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -167,10 +171,10 @@
                             </div>
                             <div class="overflow-hidden flex-fill">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h2 class="counter">82</h2>
+                                    <h2 class="counter">{{$totalBooks}}</h2>
                                     <span class="badge bg-success">1.2%</span>
                                 </div>
-                                <p>Total Subjects</p>
+                                <p>Total Books</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-top mt-3 pt-3">

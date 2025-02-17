@@ -87,41 +87,44 @@
                         <i class="ti ti-x"></i>
                     </button>
                 </div>
-                <form action="{{route('term.store')}}" method="POST">
+                <form action="{{ route('term.store') }}" method="POST">
                     @csrf
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Select Grade</label>
-                                    <select name="grade_id" id="grade_id" class="form-control">
-                                        <option value="">Select</option>
-                                    @foreach($grades as $grade)
-                                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <!-- Term Name -->
                                 <div class="mb-3">
                                     <label class="form-label">Term Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" >
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tuition Fee</label>
-                                    <input type="text" name="tuition_fee" id="tuition_fee" class="form-control" >
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Lunch Fee</label>
-                                    <input type="number" name="lunch_fee" id="lunch_fee" class="form-control" >
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tea Fee</label>
-                                    <input type="number" name="tea_fee" id="tea_fee" class="form-control">
+                                    <input type="text" name="name" id="name" class="form-control" required>
                                 </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Add Term</button>
+                                <!-- Start Date -->
+                                <div class="mb-3">
+                                    <label class="form-label">Start Date</label>
+                                    <div class="input-icon position-relative">
+                                        <span class="input-icon-addon"><i class="ti ti-calendar"></i></span>
+                                        <input type="date" name="start_date" class="form-control" required>
+                                    </div>
+                                    <small class="text-muted">Only the month and day (MM-DD) will be stored.</small>
+                                </div>
+
+                                <!-- End Date -->
+                                <div class="mb-3">
+                                    <label class="form-label">End Date</label>
+                                    <div class="input-icon position-relative">
+                                        <span class="input-icon-addon"><i class="ti ti-calendar"></i></span>
+                                        <input type="date" name="end_date" class="form-control" required>
+                                    </div>
+                                    <small class="text-muted">Only the month and day (MM-DD) will be stored.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Add Term</button>
+                        </div>
                     </div>
                 </form>
             </div>

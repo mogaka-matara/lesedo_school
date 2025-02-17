@@ -14,49 +14,16 @@
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="javascript:void(0);">Management</a>
+                                <a href="{{'dashboard'}}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Books</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="d-flex my-xl-auto right-content align-items-center flex-wrap">
-                    <div class="pe-1 mb-2">
-                        <a href="library-books.html#" class="btn btn-outline-light bg-white btn-icon me-1" data-bs-toggle="tooltip"
-                           data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh">
-                            <i class="ti ti-refresh"></i>
-                        </a>
-                    </div>
-                    <div class="pe-1 mb-2">
-                        <button type="button" class="btn btn-outline-light bg-white btn-icon me-1"
-                                data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Print"
-                                data-bs-original-title="Print">
-                            <i class="ti ti-printer"></i>
-                        </button>
-                    </div>
-                    <div class="dropdown me-2 mb-2">
-                        <a href="javascript:void(0);"
-                           class="dropdown-toggle btn btn-light fw-medium d-inline-flex align-items-center"
-                           data-bs-toggle="dropdown">
-                            <i class="ti ti-file-export me-2"></i>Export
-                        </a>
-                        <ul class="dropdown-menu  dropdown-menu-end p-3">
-                            <li>
-                                <a href="javascript:void(0);" class="dropdown-item rounded-1"><i
-                                        class="ti ti-file-type-pdf me-1"></i>Export as PDF</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="dropdown-item rounded-1"><i
-                                        class="ti ti-file-type-xls me-1"></i>Export as Excel </a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="mb-2">
 
-                        <a href="library-books.html#" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
+                        <a href="#" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                            data-bs-target="#add_library_book"><i class="ti ti-square-rounded-plus me-2"></i>Add
                             Book</a>
                     </div>
@@ -168,8 +135,6 @@
                 </div>
                 <form action="{{ route('library.borrow-store') }}" method="POST">
                     @csrf
-
-
                     <input type="hidden" name="book_id" id="bookId" value="">
 
                     <div class="modal-body">
