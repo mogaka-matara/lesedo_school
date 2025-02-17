@@ -6,7 +6,9 @@ use App\DataTables\BorrowBookDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BorrowBook;
+use App\Models\Grade;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class LibraryController extends Controller
@@ -14,8 +16,7 @@ class LibraryController extends Controller
     public function index(BorrowBookDataTable $datatable)
     {
 
-        $borrowedBook = BorrowBook::query()->with(['student', 'book'])->first();
-        return $datatable->render('admin.library.borrowed-books', compact('borrowedBook'));
+        return $datatable->render('admin.library.borrowed-books');
 
     }
 
@@ -47,30 +48,41 @@ class LibraryController extends Controller
 
     }
 
-    public function returnBook(Request $request, string $id)
+    public function returnBook(string $id)
     {
+        $borrowedBook = BorrowBook::query()
+            ->with(['student', 'book'])
+            ->findOrFail($id);
+        $grades = Grade::all();
+        $subject= Subject::all();
+
+
+        return view('admin.library.return-book', compact('borrowedBook', 'grades', 'subject'));
+    }
+
+    public function returnBookStore(Request $request, string $id)
+    {
+
         $request->validate([
-            'student_id' => ['integer'],
-            'book_id' => ['integer'],
+            'student_id' => ['required'],
+            'book_id' => ['required'],
         ]);
+
 
         $borrowedBook = BorrowBook::query()->findOrFail($id);
 
         if (!$borrowedBook) {
-            return response()->json(['error' => 'Record not found'], 404);
+            return response()->json(['error' => 'This book is not available in the return record.'], 404);
         }
 
-        // Update the status to "Cleared" and set the returned date
         $borrowedBook->status = true;
         $borrowedBook->returned_date = now();
 
-        dd($borrowedBook);
-
+//        dd($borrowedBook);
         $borrowedBook->save();
 
-        toastr()->success('Returned book successfully.');
+        toastr()->success('Return book successfully.');
 
-        return redirect()->back();
-
+        return redirect()->route('borrowedBooks');
     }
 }

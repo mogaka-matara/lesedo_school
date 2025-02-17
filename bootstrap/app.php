@@ -11,7 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->use([
+            \App\Http\Middleware\TermFeeTransitionMiddleware::class,
+            \App\Http\Middleware\TermActivationMiddleware::class,
+            \App\Http\Middleware\AcademicYearStatusMiddleware::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
