@@ -3,9 +3,11 @@
 use App\Http\Controllers\Backend\AcademicYearController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BookController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FeeComponentController;
 use App\Http\Controllers\Backend\FeeController;
 use App\Http\Controllers\Backend\GradeController;
+use App\Http\Controllers\Backend\InventoryController;
 use App\Http\Controllers\Backend\LibraryController;
 use App\Http\Controllers\Backend\PromotionController;
 use App\Http\Controllers\Backend\StudentController;
@@ -26,9 +28,7 @@ Route::redirect('/', '/login');
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -65,6 +65,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     //subject creation routes
     Route::get('subject', [SubjectController::class, 'index'])->name('subject.index');
     Route::post('all-subjects', [SubjectController::class, 'getSubjects'])->name('store.subject');
+
+    Route::resource('inventory', InventoryController::class)->only('index', 'store', 'destroy');
 });
 
 require __DIR__.'/auth.php';
