@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('student_id');
             $table->integer('term_id');
-            $table->integer('invoice_id');
+            $table->string('invoice_id');
             $table->double('amount');
             $table->date('payment_date');
             $table->string('receipt_number')->nullable();
