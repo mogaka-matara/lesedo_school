@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AcademicYearController;
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\FeeComponentController;
 use App\Http\Controllers\Backend\FeeController;
@@ -19,11 +20,15 @@ Route::get('/', function () {
 
 Route::redirect('/', '/login');
 
-Route::get('/dashboard', function () {
-    return view('admin.pages.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('admin.pages.dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -52,12 +57,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('library', BookController::class);
 
 
-    Route::get('library-borrowed-books', [LibraryController::class, 'index'])->name('borrowedBooks');
+    Route::get('library-borrowed-books', [LibraryController::class, 'index'])->name('borrowed.books');
     Route::post('library/borrow', [LibraryController::class, 'borrow'])->name('library.borrow-store');
-    Route::put('return/{id}', [LibraryController::class, 'returnBook'])->name('library.return');
+    Route::get('return/book/{id}', [LibraryController::class, 'returnBook'])->name('library.return');
+    Route::put('return/{id}', [LibraryController::class, 'returnBookStore'])->name('library.return-update');
 
     //subject creation routes
-    Route::get('all-subjects', [SubjectController::class, 'index'])->name('all.subjects');
+    Route::get('subject', [SubjectController::class, 'index'])->name('subject.index');
     Route::post('all-subjects', [SubjectController::class, 'getSubjects'])->name('store.subject');
 });
 
