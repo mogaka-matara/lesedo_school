@@ -19,4 +19,17 @@ class Grade extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    public function feeComponents(): HasMany
+    {
+        return $this->hasMany(FeeComponent::class);
+    }
+
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
+
 }
