@@ -36,7 +36,7 @@ class BorrowBookDataTable extends DataTable
             })
             ->addColumn('status', function ($query) {
                 return $query->status
-                    ? '<span class="badge rounded-pill bg-success">Cleared</span>'
+                    ? '<span class="badge rounded-pill bg-primary">Cleared</span>'
                     : '<span class="badge rounded-pill bg-danger">Borrowed</span>';
             })
             ->addColumn('return_date', function ($query) {
@@ -44,11 +44,16 @@ class BorrowBookDataTable extends DataTable
                     ? $query->returned_date
                     : '<span class="badge rounded-pill bg-warning">NOT RETURNED</span>';
             })
+//            ->addColumn('return_book', function ($query) {
+//                return "<a href='".route('library.return', $query->id)."' class='btn btn-light fs-12 fw-semibold me-3'>Return Book</a>";
+//            })
+
             ->addColumn('return_book', function ($query) {
-                return "<a href='#' data-bs-toggle='modal' data-bs-target='#return_book'
-                    data-book-id='{$query->id}'
-                    data-student-id='{$query->student_id}'
-                    class='btn btn-light fs-12 fw-semibold me-3'>Return Book</a>";
+                if ($query->status === 1) {
+                    return "<a href='javascript:void(0)' class='btn btn-success fs-12 fw-semibold me-3 disabled' title=''>Returned </a>";
+                } else {
+                    return "<a href='" . route('library.return', $query->id) . "' class='btn btn-warning fs-12 fw-semibold me-3'>Return Book</a>";
+                }
             })
             ->rawColumns(['return_book', 'book_name', 'book_no', 'publisher_name', 'author_name', 'student_name',
                 'student_grade', 'return_date',
