@@ -76,10 +76,8 @@
 
 <script src="{{ asset('backend/assets/plugins/summernote/summernote-lite.min.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
 <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
@@ -93,6 +91,60 @@
     toastr.error("{{$error}}")
     @endforeach
     @endif
+</script>
+
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('body').on('click', '.delete-item', function (event) {
+            event.preventDefault();
+
+            let deleteUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: deleteUrl,
+                        success: function (data){
+                            if(data.status === 'success') {
+                                Swal.fire(
+                                    "Deleted!",
+                                    data.message,
+                                );
+                                window.location.reload();
+
+                            }else if (data.status === 'error'){
+                                Swal.fire(
+                                    "Can't be Deleted!",
+                                    data.message,
+                                    'error'
+                                )
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error deleting item:', status, error);
+                        }
+                    });
+
+                }
+            });
+        });
+    });
 </script>
 
 
