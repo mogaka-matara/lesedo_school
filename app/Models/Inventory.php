@@ -13,13 +13,35 @@ class Inventory extends Model
         'remaining_stock',
     ];
 
-    public function supplyItems($quantity)
+    public function updateStock($quantity, $action = 'supply')
     {
-        if ($this->remaining_quantity >= $quantity) {
-            $this->remaining_quantity >=  $quantity;
-            $this->save();
-            return true;
+        if ($action === 'supply') {
+            $this->supplied_stock += $quantity;
+        } elseif ($action === 'restock') {
+            $this->total_stock += $quantity;
         }
-        return false;
+
+        $this->remaining_stock = $this->total_stock - $this->supplied_stock;
+
+        $this->save();
+
+        if ($action === 'supply') {
+            SupplyHistory::create([
+                'item_id' => $this->id,
+                'quantity' => $quantity,
+                'supply_date' => now(),
+            ]);
+        }
     }
+
+    public function allocateToStudent($quantity)
+    {
+        if ($this->remaining_stock < $quantity) {
+            return response()->json(['error' => 'Item out of stock.']);
+        }
+
+        $this->updateStock($quantity);
+
+    }
+
 }
