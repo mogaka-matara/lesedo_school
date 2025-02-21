@@ -199,4 +199,22 @@ class Student extends Model
             'term_status' => $this->term_arrears > 0 ? 'Pending' : 'Full Paid',
         ]);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($student) {
+            if ($student->wasChanged(['grade_id', 'academic_year_id'])) {
+                if ($student->getOriginal('term_arrears') == 0 && $student->getOriginal('overpayment') == 0) {
+                    $totalFee = $student->getActiveTermTotalFee();
+
+                    $student->updateQuietly(['term_arrears' => $totalFee]);
+                }
+            }
+        });
+    }
+
+
+
 }
