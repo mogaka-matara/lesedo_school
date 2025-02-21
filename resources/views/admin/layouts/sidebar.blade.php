@@ -58,7 +58,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="submenu-title {{ setActive(['student', 'promotion']) }}">
-                                <i class="ti ti-school"></i><span>Students</span><span class="menu-arrow"></span>
+                                <i class="ti ti-users-group"></i><span>Students</span><span class="menu-arrow"></span>
                             </a>
                             <ul class="submenu-list" style="{{ isSubmenuOpen(['student', 'promotion']) ? 'display: block;' : 'display: none;' }}">
                                 <li><a href="{{ route('student.index') }}" class="menu-item {{ setActive(['student']) }}">All Students</a></li>
@@ -75,7 +75,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="submenu-title {{ setActive(['fee-component', 'fees']) }}">
-                                <i class="ti ti-school"></i><span>School Fees</span><span class="menu-arrow"></span>
+                                <i class="ti ti-cash-banknote"></i><span>School Fees</span><span class="menu-arrow"></span>
                             </a>
                             <ul class="submenu-list" style="{{ isSubmenuOpen(['fee-component', 'fees']) ? 'display: block;' : 'display: none;' }}">
                                 <li><a href="{{route('fee-component.index')}}" class="menu-item {{ setActive(['fee-component']) }}">All Fee Components</a></li>
@@ -90,7 +90,7 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="submenu-title {{ setActive(['library']) }}">
-                                <i class="ti ti-school"></i><span>Library</span><span class="menu-arrow"></span>
+                                <i class="ti ti-book"></i><span>Library</span><span class="menu-arrow"></span>
                             </a>
                             <ul class="submenu-list" style="{{ isSubmenuOpen(['library', 'subject', 'borrowed']) ? 'display: block;' : 'display: none;' }}">
                                 <li><a href="{{route('library.index')}}" class="menu-item {{ setActive(['library']) }}">All Books</a></li>
@@ -100,10 +100,23 @@
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="submenu-title {{ setActive(['inventory']) }}">
-                                <i class="ti ti-school"></i><span>Inventory</span><span class="menu-arrow"></span>
+                                <i class="ti ti-building"></i><span>Inventory</span><span class="menu-arrow"></span>
                             </a>
                             <ul class="submenu-list" style="{{ isSubmenuOpen(['inventory']) ? 'display: block;' : 'display: none;' }}">
-                                <li><a href="{{route('inventory.index')}}" class="menu-item {{ setActive(['inventory']) }}">All Books</a></li>
+                                <li><a href="{{route('inventory.index')}}" class="menu-item {{ setActive(['inventory']) }}">All Chairs and Desks</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="submenu-title {{ setActive(['inventory']) }}">
+                                <i class="ti ti-building"></i><span>Uniforms</span><span class="menu-arrow"></span>
+                            </a>
+                            <ul class="submenu-list" style="{{ isSubmenuOpen(['uniform-component', 'issue-uniform']) ? 'display: block;' : 'display: none;' }}">
+                                <li><a href="{{route('uniform-component.index')}}" class="menu-item {{ setActive(['uniform-component']) }}">All Uniform Components</a></li>
+                                <li><a href="{{route('issue-uniform.create')}}" class="menu-item {{ setActive(['issue-uniform']) }}">Issue Uniform</a></li>
+                                <li><a href="{{route('issue-uniform.index')}}" class="menu-item {{ setActive(['issue-uniform']) }}">Issued Uniform</a></li>
+
+
                             </ul>
                         </li>
 

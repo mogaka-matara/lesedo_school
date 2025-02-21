@@ -92,42 +92,75 @@
     </div>
     <!-- Add Book -->
 
-{{--    <div class="modal fade" id="assign_book">--}}
-{{--        <div class="modal-dialog modal-dialog-centered modal-lg">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <div class="d-flex align-items-center">--}}
-{{--                        <h4 class="modal-title">Assign Book</h4>--}}
-{{--                        <span class="badge badge-sm bg-primary ms-2"></span>--}}
-{{--                    </div>--}}
-{{--                    <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">--}}
-{{--                        <i class="ti ti-x"></i>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <form action="{{ route('library.borrow-store') }}" method="POST">--}}
-{{--                    @csrf--}}
-{{--                    <input type="hidden" name="book_id" id="bookId" value="">--}}
+    <div class="modal fade" id="add_stock">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="modal-title">Assign Item</h4>
+                        <span class="badge badge-sm bg-primary ms-2"></span>
+                    </div>
+                    <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ti ti-x"></i>
+                    </button>
+                </div>
+                <form action="{{ route('inventory.restock') }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-{{--                    <div class="modal-body">--}}
-{{--                        <!-- Amount -->--}}
-{{--                        <div class="mb-3">--}}
-{{--                            <label for="" class="form-label">Student</label>--}}
-{{--                            <select class="select2 form-control"  name="student_id" id="">--}}
-{{--                                <option value="">Select</option>--}}
-{{--                                @foreach($students as $student)--}}
-{{--                                    <option value="{{$student->id}}">{{ $student->first_name }} {{ $student->last_name }}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-{{--                    </div>--}}
-{{--                    <div class="modal-footer">--}}
-{{--                        <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>--}}
-{{--                        <button type="submit" class="btn btn-primary">Assign Book</button>--}}
-{{--                    </div>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+                    <input type="hidden" name="item_id" id="itemId" value="">
+
+                    <div class="modal-body">
+                        <!-- Amount -->
+                        <div class="mb-3">
+                            <label class="form-label">Add Quantity</label>
+                            <input type="number" name="add_stock" class="form-control" placeholder="Enter Quantity" step="0.01" required>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Stock</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="assign_item">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="modal-title">Assign Item</h4>
+                        <span class="badge badge-sm bg-primary ms-2"></span>
+                    </div>
+                    <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ti ti-x"></i>
+                    </button>
+                </div>
+                <form action="{{ route('inventory.assign-item') }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <input type="hidden" name="item_id" id="itemAssignId" value="">
+
+                    <div class="modal-body">
+                        <!-- Amount -->
+                        <div class="mb-3">
+                            <label class="form-label">Assign Item</label>
+                            <input type="number" name="assign_item" class="form-control" placeholder="Enter Quantity" step="0.01" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Assign Item</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 
 @endsection
@@ -137,16 +170,20 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
         <script>
-            $('#assign_book').on('show.bs.modal', function (event) {
+            $('#add_stock').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
-
-                var bookId = button.data('book-id');
-
-                $('#bookId').val(bookId);
+                var itemId = button.data('item-id');
+                $('#itemId').val(itemId);
             });
         </script>
 
-
+    <script>
+        $('#assign_item').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var itemAssignId = button.data('item-assign-id');
+            $('#itemAssignId').val(itemAssignId);
+        });
+    </script>
 
 @endpush
 
