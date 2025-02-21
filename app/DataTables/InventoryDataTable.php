@@ -23,6 +23,18 @@ class InventoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'inventory.action')
+
+            ->addColumn('add_new', function ($query) {
+                return "<a href='#' data-bs-toggle='modal' data-bs-target='#add_stock'
+                    data-item-id='{$query->id}'
+                        class='btn btn-light fs-12 fw-semibold me-3'>Add Stock</a>";
+            })
+            ->addColumn('allocate', function ($query) {
+                return "<a href='#' data-bs-toggle='modal' data-bs-target='#assign_item'
+                    data-item-assign-id='{$query->id}'
+                        class='btn btn-light fs-12 fw-semibold me-3'>Give Out</a>";
+            })
+            ->rawColumns(['action', 'add_new', 'allocate'])
             ->setRowId('id');
     }
 
@@ -62,15 +74,19 @@ class InventoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id'),
+            Column::make('item_name'),
+            Column::make('total_stock'),
+            Column::make('supplied_stock'),
+            Column::make('remaining_stock'),
+            Column::make('add_new'),
+            Column::make('allocate'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+
         ];
     }
 
