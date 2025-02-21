@@ -54,6 +54,7 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the incoming request
         $request->validate([
             'current_grade_id' => 'required|exists:grades,id',
             'current_academic_year_id' => 'required|exists:academic_years,id',
@@ -61,24 +62,24 @@ class PromotionController extends Controller
             'next_academic_year_id' => 'required|exists:academic_years,id',
         ]);
 
-
+        // Retrieve input values
         $currentGradeId = $request->input('current_grade_id');
         $currentAcademicYearId = $request->input('current_academic_year_id');
         $nextGradeId = $request->input('next_grade_id');
         $nextAcademicYearId = $request->input('next_academic_year_id');
 
-        // Get current and next academic years
+        // Fetch current and next academic years
         $currentAcademicYear = AcademicYear::findOrFail($currentAcademicYearId);
         $nextAcademicYear = AcademicYear::findOrFail($nextAcademicYearId);
 
-        // Get active term for the current academic year
+        // Get the active term for the current academic year
         $activeTerm = Term::getActiveTerm();
 
-        // Get current and next grades
+        // Fetch current and next grades
         $currentGrade = Grade::findOrFail($currentGradeId);
         $nextGrade = Grade::findOrFail($nextGradeId);
 
-        // Wrap the promotion logic in a transaction
+        // Wrap the promotion logic in a transaction to ensure data consistency
         DB::transaction(function () use ($currentGrade, $nextGrade, $currentAcademicYear, $nextAcademicYear, $activeTerm) {
             // Get students in the current grade and academic year
             $students = Student::where('grade_id', $currentGrade->id)
@@ -116,7 +117,7 @@ class PromotionController extends Controller
                 // No overpayment or arrears from the previous term
                 else {
                     $termAmountPaid = 0;
-                    $termArrears = $totalFee;
+                    $termArrears = $totalFee; // This will be updated by the boot method if needed
                     $overpayment = 0;
                     $termStatus = 'Pending';
                 }
@@ -127,22 +128,17 @@ class PromotionController extends Controller
                     'academic_year_id' => $nextAcademicYear->id,
                     'term_id' => $activeTerm->id,
                     'term_amount_paid' => $termAmountPaid,
-                    'term_arrears' => $termArrears,
+                    'term_arrears' => $termArrears, // Initial value, may be adjusted by the boot method
                     'overpayment' => $overpayment,
                     'term_status' => $termStatus,
                 ]);
             }
-
-//            dd($students);
-
-            // Dump and die to inspect the updated student data
         });
 
         // Show success message and redirect
         toastr()->success('Promotion created successfully.');
         return redirect()->route('student.index')->with('success', 'All students in the selected grade have been promoted successfully.');
-    }
-    /**
+    }    /**
      * Display the specified resource.
      */
     public function show(string $id)
