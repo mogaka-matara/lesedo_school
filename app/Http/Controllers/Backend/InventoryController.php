@@ -11,7 +11,8 @@ class InventoryController extends Controller
 {
     public function index(InventoryDataTable $dataTable)
     {
-        return $dataTable->render('admin.inventory.index');
+        $item = Inventory::all();
+        return $dataTable->render('admin.inventory.index', compact('item'));
 
     }
 
@@ -36,4 +37,39 @@ class InventoryController extends Controller
 
         return redirect()->route('inventory.index');
     }
+
+    public function restockItem(Request $request)
+    {
+
+        $request->validate([
+            'item_id' => ['required', 'integer'],
+            'add_stock' => ['required', 'integer'],
+        ]);
+
+        $item = Inventory::query()->findOrFail($request->input('item_id'));
+
+        $item->updateStock($request->input('add_stock'), 'restock');
+        $item->save();
+        toastr()->success('Item updated successfully.');
+        return redirect()->route('inventory.index');
+    }
+
+    public function assignItem(Request $request)
+    {
+        $request->validate([
+            'item_id' => ['required', 'integer'],
+            'assign_item' => ['required', 'integer'],
+        ]);
+
+        $item = Inventory::findOrFail($request->input('item_id'));
+        $item->allocateToStudent($request->input('assign_item'));
+        $item->save();
+
+
+        toastr()->success('Item updated successfully.');
+
+        return redirect()->route('inventory.index');
+    }
+
+
 }
