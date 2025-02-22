@@ -13,6 +13,8 @@ use App\Http\Controllers\Backend\PromotionController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Backend\TermController;
+use App\Http\Controllers\Backend\UniformController;
+use App\Http\Controllers\Backend\UniformTransactionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,7 +58,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     //library Routes
     Route::resource('library', BookController::class);
 
-
     Route::get('library-borrowed-books', [LibraryController::class, 'index'])->name('borrowed.books');
     Route::post('library/borrow', [LibraryController::class, 'borrow'])->name('library.borrow-store');
     Route::get('return/book/{id}', [LibraryController::class, 'returnBook'])->name('library.return');
@@ -66,7 +67,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('subject', [SubjectController::class, 'index'])->name('subject.index');
     Route::post('all-subjects', [SubjectController::class, 'getSubjects'])->name('store.subject');
 
-    Route::resource('inventory', InventoryController::class)->only('index', 'store', 'destroy');
+    Route::put('restock', [InventoryController::class, 'restockItem'])->name('inventory.restock');
+    Route::put('assign-item', [InventoryController::class, 'assignItem'])->name('inventory.assign-item');
+    Route::resource('inventory', InventoryController::class)->only('index', 'store', 'destroy', );
+
+    //uniforms routes
+    Route::resource('uniform-component', UniformController::class)->only('index', 'store', 'destroy', );
+    Route::resource('issue-uniform', UniformTransactionController::class)->only('index', 'store', 'destroy','create' );
 });
 
 require __DIR__.'/auth.php';
