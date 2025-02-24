@@ -62,22 +62,10 @@
                 </div>
             </div>
             <!-- /Page Header -->
-
-            <!-- Guardians List -->
-            <div class="card">
-                <div class="card-body p-0 py-3">
-
                     {{ $dataTable->table() }}
-
-                </div>
-            </div>
-            <!-- /Guardians List -->
-
         </div>
     </div>
-    <!-- /Page Wrapper -->
 
-    <!-- Add Classes -->
     <div class="modal fade" id="add_class">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -123,7 +111,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="modal-title">Class Details</h4>
+                        <h4 class="modal-title">Year List</h4>
                         <span class="badge badge-soft-success ms-2"><i class="ti ti-circle-filled me-1 fs-5"></i>Active</span>
                     </div>
                     <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal"
@@ -136,8 +124,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="class-detail-info">
-                                    <p>Class Name</p>
-                                    <span>III</span>
+                                    <p>Academic Year</p>
+                                    <span>{{$year->name}}</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
