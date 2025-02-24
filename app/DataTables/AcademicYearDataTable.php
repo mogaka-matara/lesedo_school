@@ -22,8 +22,18 @@ class AcademicYearDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'academicyear.action')
-            ->addColumn('status', function ($academicYear) {
+            ->addColumn('action', function ($query) {
+                $editBtn = "<a href='".route('academic-year.edit', $query->id)."' class=' btn btn-primary me-3'><i class='fa fa-edit'></i></a>";
+                $deleteBtn = "<a href='".route('academic-year.destroy', $query->id)."' class=' btn btn-danger delete-item '><i class='fa-solid fa-trash'></i></a>";
+                $showBtn = "<a href='#' data-bs-toggle='modal' data-bs-target='#view_year'
+                                data-year-name='{$query->name}'
+                                data-start-date='{$query->start_date}'
+                                data-end-date='{$query->end_date}'
+                                data-status='{$query->status}'
+                                class='btn btn-light fs-12 fw-semibold me-3'><i class='fa-solid fa-info'></i></a>";
+                return $showBtn.$editBtn . $deleteBtn;
+
+            })            ->addColumn('status', function ($academicYear) {
                 $badgeClass = $academicYear->status ? 'badge bg-success rounded-pill' : 'badge bg-secondary rounded-pill';
                 $badgeText = $academicYear->status ? 'Active' : 'Inactive';
 
