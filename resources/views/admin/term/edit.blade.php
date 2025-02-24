@@ -69,7 +69,7 @@
                                     <h5 class="card-title">Update Term</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{route('grade.update', $term->id)}}" method="POST">
+                                    <form action="{{route('term.update', $term->id)}}" method="POST">
 
                                         @csrf
                                         @method('PUT')
