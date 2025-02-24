@@ -97,6 +97,13 @@ class GradeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $grade = Grade::query()->findOrFail($id);
+
+        if ($grade->students()->exists() || $grade->feeComponents()->exists() || $grade->books()->exists()) {
+            return response()->json(['status' => 'error', 'message' => 'Grade Can not be deleted because it has related records.']);
+        }
+        $grade->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Grade deleted successfully!']);
     }
 }
