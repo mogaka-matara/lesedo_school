@@ -24,7 +24,7 @@ class GradeDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $editBtn = "<a href='".route('grade.edit', $query->id)."' class='edit btn btn-primary'><i class='fa fa-edit'></i></a>";
-                $deleteBtn = "<a href='".route('grade.edit', $query->id)."' class='edit btn btn-danger '><i class='fa fa-trash-alt'></i></a>";
+                $deleteBtn = "<a href='".route('grade.destroy', $query->id)."' class='edit btn btn-danger delete-item  '><i class='fa fa-trash-alt'></i></a>";
 
                 return $editBtn . $deleteBtn;
 
