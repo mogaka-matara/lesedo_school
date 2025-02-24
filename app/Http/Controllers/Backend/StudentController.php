@@ -22,7 +22,6 @@ class StudentController extends Controller
     {
         $students = Student::query()->with('studentTermFees')->get();
         return $dataTable->render('admin.student.index', compact('students'));
-
     }
 
     /**
@@ -126,7 +125,6 @@ class StudentController extends Controller
         $student = Student::query()
             ->with('studentTermFees', 'grade')
             ->findOrFail($id);
-
         return view('admin.student.show', compact('student'));
     }
 
