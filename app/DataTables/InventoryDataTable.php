@@ -32,7 +32,7 @@ class InventoryDataTable extends DataTable
             ->addColumn('allocate', function ($query) {
                 return "<a href='#' data-bs-toggle='modal' data-bs-target='#assign_item'
                     data-item-assign-id='{$query->id}'
-                        class='btn btn-light fs-12 fw-semibold me-3'>Give Out</a>";
+                        class='btn btn-light fs-12 fw-semibold me-3'>Allocate</a>";
             })
             ->rawColumns(['action', 'add_new', 'allocate'])
             ->setRowId('id');
