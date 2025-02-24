@@ -15,7 +15,8 @@ class AcademicYearController extends Controller
      */
     public function index(AcademicYearDataTable $dataTable)
     {
-        return $dataTable->render('admin.year.index');
+        $year = AcademicYear::all();
+        return $dataTable->render('admin.year.index', compact('year'));
     }
 
     /**
@@ -70,7 +71,8 @@ class AcademicYearController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $academicYear = AcademicYear::query()->findOrFail($id);
+        return view('admin.year.edit', compact('academicYear'));
     }
 
     /**
