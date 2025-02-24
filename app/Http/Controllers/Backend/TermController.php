@@ -37,8 +37,6 @@ class TermController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date'],
-
-
         ]);
 
         $term = new Term();
@@ -64,7 +62,9 @@ class TermController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $term = Term::query()->findOrFail($id);
+
+        return view('admin.term.edit', compact('term'));
     }
 
     /**
@@ -72,7 +72,21 @@ class TermController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+        ]);
+
+        $term = Term::query()->findOrFail($id);
+        $term->name = $request->input('name');
+        $term->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        $term->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
+        $term->save();
+
+        toastr()->success('Term updated successfully.');
+
+        return redirect()->route('term.index');
     }
 
     /**
@@ -80,6 +94,12 @@ class TermController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $term = Term::query()->findOrFail($id);
+        if ($term->studentTermFees()->exists() || $term->feeComponents()->exists()) {
+            return response()->json(['status' => 'error', 'message' => 'Term cannot be deleted because It has related records']);
+        }
+        $term->delete();
+        return response()->json(['status' => 'success', 'message' => 'Term deleted successfully!']);
+
     }
 }
