@@ -24,14 +24,11 @@ class TermDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $editBtn = "<a href='".route('term.edit', $query->id)."' class='edit btn btn-primary'><i class='fa fa-edit'></i></a>";
-                $deleteBtn = "<a href='".route('term.edit', $query->id)."' class='edit btn btn-danger '><i class='fa-solid fa-trash'></i></a>";
+                $deleteBtn = "<a href='".route('term.destroy', $query->id)."' class='edit btn btn-danger delete-item'><i class='fa-solid fa-trash'></i></a>";
 
                 return $editBtn . $deleteBtn;
 
             })
-
-
-
             ->rawColumns(['action'])
             ->setRowId('id');
     }
