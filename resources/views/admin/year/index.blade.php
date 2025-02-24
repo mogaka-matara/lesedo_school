@@ -55,7 +55,7 @@
                         </ul>
                     </div>
                     <div class="mb-2">
-                        <a href="classes.html#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_class"><i
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_year"><i
                                 class="ti ti-square-rounded-plus-filled me-2"></i>Add Academic Year</a>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
     <!-- /Page Wrapper -->
 
     <!-- Add Classes -->
-    <div class="modal fade" id="add_class">
+    <div class="modal fade" id="add_year">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -137,49 +137,47 @@
     <!-- /Add Classes -->
 
     <!-- View Classes -->
-    <div class="modal fade" id="view_class">
+    <div class="modal fade" id="view_year" tabindex="-1" aria-labelledby="viewYearLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="modal-title">Class Details</h4>
-                        <span class="badge badge-soft-success ms-2"><i class="ti ti-circle-filled me-1 fs-5"></i>Active</span>
+                        <h4 class="modal-title">Academic Year Details</h4>
+                        <span id="yearStatusBadge" class="badge ms-2"></span>
                     </div>
                     <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal"
                             aria-label="Close">
                         <i class="ti ti-x"></i>
                     </button>
                 </div>
-                <form action="classes.html">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>Class Name</p>
-                                    <span>III</span>
-                                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="class-detail-info">
+                                <p>Name</p>
+                                <span id="yearName"></span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>Section</p>
-                                    <span>A</span>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="class-detail-info">
+                                <p>Start Date</p>
+                                <span id="startDate"></span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>No of Subjects</p>
-                                    <span>05</span>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="class-detail-info">
+                                <p>End Date</p>
+                                <span id="endDate"></span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>No of Students</p>
-                                    <span>25</span>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="class-detail-info">
+                                <p>Status</p>
+                                <span id="yearStatus"></span>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -191,5 +189,31 @@
 
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '[data-bs-target="#view_year"]', function () {
+                var yearName = $(this).data('year-name');
+                var startDate = $(this).data('start-date');
+                var endDate = $(this).data('end-date');
+                var status = $(this).data('status') === 1 ? "Active" : "Inactive";
+
+                // Update modal content
+
+                $('#yearName').text(yearName);
+                $('#startDate').text(startDate);
+                $('#endDate').text(endDate);
+                $('#yearStatus').text(status);
+
+                var statusBadge = $('#yearStatusBadge');
+                if (status === "Active") {
+                    statusBadge.removeClass('badge-soft-danger').addClass('badge-soft-success');
+                } else {
+                    statusBadge.removeClass('badge-soft-success').addClass('badge-soft-danger');
+                }
+                statusBadge.text(status);
+            });
+        });
+    </script>
 @endpush
 
